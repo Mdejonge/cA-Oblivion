@@ -11,6 +11,8 @@
 <?php 
 	$author = get_user_by( 'slug', get_query_var( 'author_name' ) );
 	$user_info = get_userdata( $author->ID );
+	$user_roles = $user_info->roles;
+	$user_role = array_shift($user_roles);
 
 ?>
 			<div class="title_wrapper container">
@@ -40,10 +42,7 @@
 											<p><span class="fz48"><?php echo $user_info->display_name; ?></span></p>
 											<p><span class="fz26">
 												<?php
-
-												if(have_posts()) : while(have_posts()) : the_post();
-												    echo $user_info->roles;
-												endwhile;endif;
+												echo $user_role;
 											?>
 											</span></p>
 										<div class="highlight-no-margin mt100"></div>
